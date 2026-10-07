@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>False Claims Web Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css" rel="stylesheet" />
+  <link href="styles.css" rel="stylesheet" />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+  <div id="map"></div>
+  <header id="title-bar">
+    <h1>Map of Pretendian Bullsh*t</h1>
+  </header>
+  <aside id="sidebar">
+    <div class="panel-top">
+      <span class="panel-label">WELCOME</span>
+      <button id="sidebar-close" aria-label="Close panel">&times;</button>
+    </div>
+    <h2>Lorem ipsum dolor sit amet</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </aside>
+  <button id="sidebar-open">WELCOME</button>
+  <section id="filters">
+    <span class="panel-label">FILTERS</span>
+    <label><input type="checkbox" id="toggle-moving-line" checked /> Show PhD moving line</label>
+  </section>
+  <script src="config.js"></script>
+  <script src="map.js"></script>
+  <script>
+    const sidebar = document.getElementById("sidebar");
+    const openBtn = document.getElementById("sidebar-open");
+    const setSidebar = open => {
+      sidebar.style.display = open ? "" : "none";
+      openBtn.style.display = open ? "none" : "block";
+    };
+    document.getElementById("sidebar-close").onclick = () => setSidebar(false);
+    openBtn.onclick = () => setSidebar(true);
+  </script>
+</body>
+</html>
