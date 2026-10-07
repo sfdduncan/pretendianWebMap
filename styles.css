@@ -2,6 +2,16 @@ html, body { margin: 0; height: 100vh; width: 100vw; font-family: sans-serif; ov
 
 #map { position: absolute; inset: 0; }
 
+/* Covers the map until layers have rendered */
+#loading {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: #000;
+  transition: opacity 0.8s ease;
+}
+#loading.done { opacity: 0; pointer-events: none; }
+
 /* Floating cards over the map */
 #title-bar {
   position: absolute;
