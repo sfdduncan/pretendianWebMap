@@ -79,7 +79,6 @@ html, body { margin: 0; height: 100vh; width: 100vw; font-family: sans-serif; ov
   max-height: clamp(90px, 22vh, 220px);
   margin-bottom: 8px;
   object-fit: contain;
-  background: #e5e5e5;
   display: block;
 }
 
@@ -94,7 +93,7 @@ html, body { margin: 0; height: 100vh; width: 100vw; font-family: sans-serif; ov
 }
 
 .popup-name { font-weight: bold; font-size: 14px; }
-.popup-institution { color: #555; margin-bottom: 6px; }
+.popup-institution { color: #333; font-weight: 600; overflow-wrap: anywhere; margin: 2px 0 8px; }
 .popup-line { margin-top: 4px; overflow-wrap: anywhere; }
 
 /* Navigation controls: separate black circles with white icons */

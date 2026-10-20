@@ -7,7 +7,7 @@ const map = new mapboxgl.Map({
   zoom: 3.48,
   minZoom: 0,
   maxZoom: 10,
-  maxBounds: [[-180, 0], [-20, 60]], // [SW, NE] covering North America
+  maxBounds: [[-135, 0], [-50, 60]], // [SW, NE] limits panning around North America
 });
 map.addControl(new mapboxgl.NavigationControl(), "bottom-right");
 

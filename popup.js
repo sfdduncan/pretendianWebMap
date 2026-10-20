@@ -1,6 +1,16 @@
 function buildPopup(p) {
   const el = document.createElement("div");
 
+  const name = document.createElement("div");
+  name.className = "popup-name";
+  name.textContent = p.gender ? `${p.name}, ${p.gender}` : p.name;
+  el.appendChild(name);
+
+  const inst = document.createElement("div");
+  inst.className = "popup-institution";
+  inst.textContent = p.institution || "Institution not listed";
+  el.appendChild(inst);
+
   const file = HEADSHOTS[p.name];
   if (file) {
     const img = document.createElement("img");
@@ -14,16 +24,6 @@ function buildPopup(p) {
     empty.textContent = "No photo";
     el.appendChild(empty);
   }
-
-  const name = document.createElement("div");
-  name.className = "popup-name";
-  name.textContent = p.gender ? `${p.name}, ${p.gender}` : p.name;
-  el.appendChild(name);
-
-  const inst = document.createElement("div");
-  inst.className = "popup-institution";
-  inst.textContent = p.institution;
-  el.appendChild(inst);
 
   const claims = JSON.parse(p.claims);
   if (claims.length) {

@@ -27,7 +27,6 @@ const TERRITORIES_BY_PERSON = {
     "ᏣᎳᎫᏪᏘᏱ Tsalaguwetiyi (Cherokee, East)",
     "Cherokee (Oklahoma)",
     "Jicarilla Apache",
-    "San Carlos Apache",
     "White Mountain Apache",
     "Yavapai Apache",
     "Chiricahua Apache",
@@ -45,7 +44,11 @@ const TERRITORIES_BY_PERSON = {
     "Mvskoke (Muscogee)",
     "Muscogee (Oklahoma)",
     "Choctaw (Oklahoma)",
-    "Chahta Yakni (Choctaw)"
+    "Chahta Yakni (Choctaw)",
+    "Eastern Shawnee (Oklahoma)",
+    "Shawandasse Tula (Shawanwaki/Shawnee)",
+    "Potawatomi-Shawnee (Oklahoma)",
+    "Bodwéwadmi (Potawatomi)"
   ],
   "Carrie Bourassa": [
     "Mountain Métis",
@@ -134,14 +137,14 @@ function loadPeople(onLoaded) {
           geometry: { type: "Point", coordinates: [lon, lat] },
           properties: {
             name: `${r["First Name"]} ${r["Last Name"]}`.trim(),
-            institution: r["Institution"],
+            institution: (r["Institution"] || r["Current or Most Recent Institution"] || "").trim(),
             gender: (r["Gender"] || "").trim(),
             sources: (r["Notes/Links"] || "").trim(),
             phdLat: r["PhD_Lat"],
             phdLon: r["PhD_Lon"],
             phdInstitution: (r["PhD Institution"] || r["PhD Name"] || "").trim(),
             claims: JSON.stringify(
-              ["Claim 1", "Claim 2", "Claim 3"].map(k => (r[k] || "").trim()).filter(Boolean)
+              ["Claim 1", "Claim 2", "Claim 3", "Claim 4", "Claim 5"].map(k => (r[k] || "").trim()).filter(Boolean)
             )
           }
         }));
