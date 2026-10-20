@@ -13,12 +13,6 @@ map.addControl(new mapboxgl.NavigationControl(), "bottom-right");
 
 let popup = null;
 
-function updateMapStatus() {
-  const center = map.getCenter();
-  document.getElementById("map-status-zoom").textContent = map.getZoom().toFixed(2);
-  document.getElementById("map-status-lat").textContent = center.lat.toFixed(4);
-  document.getElementById("map-status-lon").textContent = center.lng.toFixed(4);
-}
 
 // Draws a six-armed asterisk as map icon image data (24px, used at 2x pixel ratio)
 function makeAsteriskImage(color) {
