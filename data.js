@@ -21,6 +21,27 @@ const HEADSHOTS = {
   "Theodore Van Alst": "TheodoreVanAlst.jpeg"
 };
 
+const CASE_BACKGROUND_PLACEHOLDER = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+const CASE_BACKGROUNDS = Object.fromEntries([
+  "Leila Blackbird",
+  "Maylei Blackwell",
+  "Kent Blansett",
+  "Carrie Bourassa",
+  "Lisa Brooks",
+  "Alicia Carroll",
+  "Qwo-Li Driskill",
+  "Amira Gill",
+  "Nadya Gill",
+  "Elizabeth Hoover",
+  "Lindsay Montgomery",
+  "Sandra Muse Isaacs",
+  "Julie Nagam",
+  "Andrea Smith",
+  "Vianne Timmons",
+  "Mary Ellen Turpel-Lafond",
+  "Theodore Van Alst"
+].map(name => [name, CASE_BACKGROUND_PLACEHOLDER]));
+
 // Territories to highlight for each person, by exact `Name` in the territories GeoJSON.
 const TERRITORIES_BY_PERSON = {
   "Leila Blackbird": [

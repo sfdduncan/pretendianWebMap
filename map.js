@@ -12,7 +12,7 @@ const map = new mapboxgl.Map({
 map.addControl(new mapboxgl.NavigationControl(), "bottom-right");
 
 let popup = null;
-
+let selectedPersonName = null;
 
 // Draws a six-armed asterisk as map icon image data (24px, used at 2x pixel ratio)
 function makeAsteriskImage(color) {
@@ -36,8 +36,27 @@ function makeAsteriskImage(color) {
 }
 
 function clearSelection() {
+  selectedPersonName = null;
+  showSidebarWelcome();
   resetHighlight();
   clearPhd();
+}
+
+function showSidebarWelcome() {
+  document.getElementById("sidebar-label").textContent = "WELCOME";
+  document.getElementById("sidebar-welcome").hidden = false;
+  document.getElementById("sidebar-case").hidden = true;
+}
+
+function showSidebarCase(personName) {
+  selectedPersonName = personName;
+  document.getElementById("sidebar-label").textContent = "Background";
+  document.getElementById("sidebar-welcome").hidden = true;
+  document.getElementById("sidebar-case-name").textContent = personName;
+  document.getElementById("sidebar-case-background").textContent = CASE_BACKGROUNDS[personName] || CASE_BACKGROUND_PLACEHOLDER;
+  document.getElementById("sidebar-case").hidden = false;
+  document.getElementById("sidebar").style.display = "";
+  document.getElementById("sidebar-open").style.display = "none";
 }
 
 function addPeopleLayer(features) {
@@ -64,6 +83,7 @@ function onMapClick(e) {
     return;
   }
   const f = hits[0];
+  showSidebarCase(f.properties.name);
   if (popup) popup.off("close", clearSelection).remove();
   popup = new mapboxgl.Popup({ offset: 12 })
     .setLngLat(f.geometry.coordinates)
@@ -75,8 +95,6 @@ function onMapClick(e) {
 }
 
 map.on("load", () => {
-  updateMapStatus();
-  map.on("move", updateMapStatus);
   hideBasemapLabels();
   addTerritoryLayers();
 

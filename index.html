@@ -17,23 +17,24 @@
   </header>
   <aside id="sidebar">
     <div class="panel-top">
-      <span class="panel-label">WELCOME</span>
+      <span class="panel-label" id="sidebar-label">WELCOME</span>
       <button id="sidebar-close" aria-label="Close panel">&times;</button>
     </div>
-    <h2>Lorem ipsum dolor sit amet</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <div id="sidebar-welcome">
+      <h2>Lorem ipsum dolor sit amet</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+    <div id="sidebar-case" hidden>
+      <h2 id="sidebar-case-name"></h2>
+      <p id="sidebar-case-background"></p>
+    </div>
   </aside>
   <button id="sidebar-open">WELCOME</button>
   <section id="filters">
     <span class="panel-label">FILTERS</span>
     <label><input type="checkbox" id="toggle-moving-line" checked /> Show PhD moving line</label>
   </section>
-  <div id="map-status" aria-label="Map center coordinates and zoom" aria-live="off">
-    <span>ZOOM <strong id="map-status-zoom">3.48</strong></span>
-    <span>LAT <strong id="map-status-lat">43.0000</strong></span>
-    <span>LON <strong id="map-status-lon">-75.0000</strong></span>
-  </div>
   <script src="config.js"></script>
   <script src="data.js"></script>
   <script src="territories.js"></script>
@@ -49,7 +50,10 @@
       openBtn.style.display = open ? "none" : "block";
     };
     document.getElementById("sidebar-close").onclick = () => setSidebar(false);
-    openBtn.onclick = () => setSidebar(true);
+    openBtn.onclick = () => {
+      if (selectedPersonName) showSidebarCase(selectedPersonName);
+      else setSidebar(true);
+    };
   </script>
 </body>
 </html>
