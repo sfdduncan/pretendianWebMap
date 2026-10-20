@@ -3,15 +3,22 @@ mapboxgl.accessToken = MAPBOX_TOKEN;
 const map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/sfduncan/cm35a32qx016m01pa7opc4fzi",
-  center: [-104, 43],
+  center: [-104, 45],
   zoom: 3.48,
   minZoom: 0,
-  maxZoom: 10,
-  maxBounds: [[-135, 0], [-50, 60]], // [SW, NE] limits panning around North America
+  maxZoom: 12,
+  maxBounds: [[-160, 0], [-40, 75]], // [SW, NE] includes the initial view and limits panning
 });
 map.addControl(new mapboxgl.NavigationControl(), "bottom-right");
 
 let popup = null;
+
+function updateMapStatus() {
+  const center = map.getCenter();
+  document.getElementById("map-status-zoom").textContent = map.getZoom().toFixed(2);
+  document.getElementById("map-status-lat").textContent = center.lat.toFixed(4);
+  document.getElementById("map-status-lon").textContent = center.lng.toFixed(4);
+}
 
 // Draws a six-armed asterisk as map icon image data (24px, used at 2x pixel ratio)
 function makeAsteriskImage(color) {
@@ -74,6 +81,8 @@ function onMapClick(e) {
 }
 
 map.on("load", () => {
+  updateMapStatus();
+  map.on("move", updateMapStatus);
   hideBasemapLabels();
   addTerritoryLayers();
 
